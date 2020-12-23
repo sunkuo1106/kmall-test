@@ -28,4 +28,7 @@ public interface PmsProductImageMapper {
     int updateByPrimaryKeySelective(PmsProductImage record);
 
     int updateByPrimaryKey(PmsProductImage record);
+
+    //批量添加
+    int insertImages(@Param("productId") Long productId, @Param("spuImageList") List<PmsProductImage> spuImageList);
 }

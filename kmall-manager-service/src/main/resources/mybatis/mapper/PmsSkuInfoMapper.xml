@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kgc.kmall.manager.mapper.PmsSkuInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.kgc.kmall.bean.PmsSkuInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="product_id" property="spuId" jdbcType="BIGINT" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="sku_name" property="skuName" jdbcType="VARCHAR" />
+    <result column="sku_desc" property="skuDesc" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="DOUBLE" />
+    <result column="tm_id" property="tmId" jdbcType="BIGINT" />
+    <result column="catalog3_id" property="catalog3Id" jdbcType="BIGINT" />
+    <result column="sku_default_img" property="skuDefaultImg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, product_id, price, sku_name, sku_desc, weight, tm_id, catalog3_id, sku_default_img
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.kmall.bean.PmsSkuInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pms_sku_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pms_sku_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pms_sku_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kgc.kmall.bean.PmsSkuInfoExample" >
+    delete from pms_sku_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kgc.kmall.bean.PmsSkuInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into pms_sku_info (id, product_id, price, 
+      sku_name, sku_desc, weight, 
+      tm_id, catalog3_id, sku_default_img
+      )
+    values (#{id,jdbcType=BIGINT}, #{spuId,jdbcType=BIGINT}, #{price,jdbcType=DOUBLE}, 
+      #{skuName,jdbcType=VARCHAR}, #{skuDesc,jdbcType=VARCHAR}, #{weight,jdbcType=DOUBLE}, 
+      #{tmId,jdbcType=BIGINT}, #{catalog3Id,jdbcType=BIGINT}, #{skuDefaultImg,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kgc.kmall.bean.PmsSkuInfo" >
+    insert into pms_sku_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="spuId != null" >
+        product_id,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="skuName != null" >
+        sku_name,
+      </if>
+      <if test="skuDesc != null" >
+        sku_desc,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="tmId != null" >
+        tm_id,
+      </if>
+      <if test="catalog3Id != null" >
+        catalog3_id,
+      </if>
+      <if test="skuDefaultImg != null" >
+        sku_default_img,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="spuId != null" >
+        #{spuId,jdbcType=BIGINT},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="skuName != null" >
+        #{skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuDesc != null" >
+        #{skuDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="tmId != null" >
+        #{tmId,jdbcType=BIGINT},
+      </if>
+      <if test="catalog3Id != null" >
+        #{catalog3Id,jdbcType=BIGINT},
+      </if>
+      <if test="skuDefaultImg != null" >
+        #{skuDefaultImg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kgc.kmall.bean.PmsSkuInfoExample" resultType="java.lang.Integer" >
+    select count(*) from pms_sku_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update pms_sku_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.spuId != null" >
+        product_id = #{record.spuId,jdbcType=BIGINT},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DOUBLE},
+      </if>
+      <if test="record.skuName != null" >
+        sku_name = #{record.skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skuDesc != null" >
+        sku_desc = #{record.skuDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weight != null" >
+        weight = #{record.weight,jdbcType=DOUBLE},
+      </if>
+      <if test="record.tmId != null" >
+        tm_id = #{record.tmId,jdbcType=BIGINT},
+      </if>
+      <if test="record.catalog3Id != null" >
+        catalog3_id = #{record.catalog3Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.skuDefaultImg != null" >
+        sku_default_img = #{record.skuDefaultImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update pms_sku_info
+    set id = #{record.id,jdbcType=BIGINT},
+      product_id = #{record.spuId,jdbcType=BIGINT},
+      price = #{record.price,jdbcType=DOUBLE},
+      sku_name = #{record.skuName,jdbcType=VARCHAR},
+      sku_desc = #{record.skuDesc,jdbcType=VARCHAR},
+      weight = #{record.weight,jdbcType=DOUBLE},
+      tm_id = #{record.tmId,jdbcType=BIGINT},
+      catalog3_id = #{record.catalog3Id,jdbcType=BIGINT},
+      sku_default_img = #{record.skuDefaultImg,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kgc.kmall.bean.PmsSkuInfo" >
+    update pms_sku_info
+    <set >
+      <if test="spuId != null" >
+        product_id = #{spuId,jdbcType=BIGINT},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="skuName != null" >
+        sku_name = #{skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuDesc != null" >
+        sku_desc = #{skuDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="tmId != null" >
+        tm_id = #{tmId,jdbcType=BIGINT},
+      </if>
+      <if test="catalog3Id != null" >
+        catalog3_id = #{catalog3Id,jdbcType=BIGINT},
+      </if>
+      <if test="skuDefaultImg != null" >
+        sku_default_img = #{skuDefaultImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kgc.kmall.bean.PmsSkuInfo" >
+    update pms_sku_info
+    set product_id = #{spuId,jdbcType=BIGINT},
+      price = #{price,jdbcType=DOUBLE},
+      sku_name = #{skuName,jdbcType=VARCHAR},
+      sku_desc = #{skuDesc,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=DOUBLE},
+      tm_id = #{tmId,jdbcType=BIGINT},
+      catalog3_id = #{catalog3Id,jdbcType=BIGINT},
+      sku_default_img = #{skuDefaultImg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

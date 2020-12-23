@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.kgc.kmall.manager.mapper.PmsProductInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.kgc.kmall.bean.PmsProductInfo" >
+<mapper namespace="com.kgc.kmall.manager.mapper.PmsSkuSaleAttrValueMapper" >
+  <resultMap id="BaseResultMap" type="com.kgc.kmall.bean.PmsSkuSaleAttrValue" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="product_name" property="spuName" jdbcType="VARCHAR" />
-    <result column="description" property="description" jdbcType="VARCHAR" />
-    <result column="catalog3_id" property="catalog3Id" jdbcType="BIGINT" />
-    <result column="tm_id" property="tmId" jdbcType="BIGINT" />
+    <result column="sku_id" property="skuId" jdbcType="BIGINT" />
+    <result column="sale_attr_id" property="saleAttrId" jdbcType="BIGINT" />
+    <result column="sale_attr_value_id" property="saleAttrValueId" jdbcType="BIGINT" />
+    <result column="sale_attr_name" property="saleAttrName" jdbcType="VARCHAR" />
+    <result column="sale_attr_value_name" property="saleAttrValueName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,15 +68,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, product_name, description, catalog3_id, tm_id
+    id, sku_id, sale_attr_id, sale_attr_value_id, sale_attr_name, sale_attr_value_name
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.kmall.bean.PmsProductInfoExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.kmall.bean.PmsSkuSaleAttrValueExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from pms_product_info
+    from pms_sku_sale_attr_value
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,85 +87,96 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from pms_product_info
+    from pms_sku_sale_attr_value
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from pms_product_info
+    delete from pms_sku_sale_attr_value
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.kgc.kmall.bean.PmsProductInfoExample" >
-    delete from pms_product_info
+  <delete id="deleteByExample" parameterType="com.kgc.kmall.bean.PmsSkuSaleAttrValueExample" >
+    delete from pms_sku_sale_attr_value
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.kgc.kmall.bean.PmsProductInfo" useGeneratedKeys="true" keyProperty="id" >
-    insert into pms_product_info (id, product_name, description, 
-      catalog3_id, tm_id)
-    values (#{id,jdbcType=BIGINT}, #{spuName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{catalog3Id,jdbcType=BIGINT}, #{tmId,jdbcType=BIGINT})
+  <insert id="insert" parameterType="com.kgc.kmall.bean.PmsSkuSaleAttrValue" >
+    insert into pms_sku_sale_attr_value (id, sku_id, sale_attr_id, 
+      sale_attr_value_id, sale_attr_name, sale_attr_value_name
+      )
+    values (#{id,jdbcType=BIGINT}, #{skuId,jdbcType=BIGINT}, #{saleAttrId,jdbcType=BIGINT}, 
+      #{saleAttrValueId,jdbcType=BIGINT}, #{saleAttrName,jdbcType=VARCHAR}, #{saleAttrValueName,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.kgc.kmall.bean.PmsProductInfo" >
-    insert into pms_product_info
+  <insert id="insertSelective" parameterType="com.kgc.kmall.bean.PmsSkuSaleAttrValue" >
+    insert into pms_sku_sale_attr_value
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="spuName != null" >
-        product_name,
+      <if test="skuId != null" >
+        sku_id,
       </if>
-      <if test="description != null" >
-        description,
+      <if test="saleAttrId != null" >
+        sale_attr_id,
       </if>
-      <if test="catalog3Id != null" >
-        catalog3_id,
+      <if test="saleAttrValueId != null" >
+        sale_attr_value_id,
       </if>
-      <if test="tmId != null" >
-        tm_id,
+      <if test="saleAttrName != null" >
+        sale_attr_name,
+      </if>
+      <if test="saleAttrValueName != null" >
+        sale_attr_value_name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="spuName != null" >
-        #{spuName,jdbcType=VARCHAR},
+      <if test="skuId != null" >
+        #{skuId,jdbcType=BIGINT},
       </if>
-      <if test="description != null" >
-        #{description,jdbcType=VARCHAR},
+      <if test="saleAttrId != null" >
+        #{saleAttrId,jdbcType=BIGINT},
       </if>
-      <if test="catalog3Id != null" >
-        #{catalog3Id,jdbcType=BIGINT},
+      <if test="saleAttrValueId != null" >
+        #{saleAttrValueId,jdbcType=BIGINT},
       </if>
-      <if test="tmId != null" >
-        #{tmId,jdbcType=BIGINT},
+      <if test="saleAttrName != null" >
+        #{saleAttrName,jdbcType=VARCHAR},
+      </if>
+      <if test="saleAttrValueName != null" >
+        #{saleAttrValueName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.kgc.kmall.bean.PmsProductInfoExample" resultType="java.lang.Integer" >
-    select count(*) from pms_product_info
+  <select id="countByExample" parameterType="com.kgc.kmall.bean.PmsSkuSaleAttrValueExample" resultType="java.lang.Integer" >
+    select count(*) from pms_sku_sale_attr_value
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update pms_product_info
+    update pms_sku_sale_attr_value
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.spuName != null" >
-        product_name = #{record.spuName,jdbcType=VARCHAR},
+      <if test="record.skuId != null" >
+        sku_id = #{record.skuId,jdbcType=BIGINT},
       </if>
-      <if test="record.description != null" >
-        description = #{record.description,jdbcType=VARCHAR},
+      <if test="record.saleAttrId != null" >
+        sale_attr_id = #{record.saleAttrId,jdbcType=BIGINT},
       </if>
-      <if test="record.catalog3Id != null" >
-        catalog3_id = #{record.catalog3Id,jdbcType=BIGINT},
+      <if test="record.saleAttrValueId != null" >
+        sale_attr_value_id = #{record.saleAttrValueId,jdbcType=BIGINT},
       </if>
-      <if test="record.tmId != null" >
-        tm_id = #{record.tmId,jdbcType=BIGINT},
+      <if test="record.saleAttrName != null" >
+        sale_attr_name = #{record.saleAttrName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.saleAttrValueName != null" >
+        sale_attr_value_name = #{record.saleAttrValueName,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -172,40 +184,45 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update pms_product_info
+    update pms_sku_sale_attr_value
     set id = #{record.id,jdbcType=BIGINT},
-      product_name = #{record.spuName,jdbcType=VARCHAR},
-      description = #{record.description,jdbcType=VARCHAR},
-      catalog3_id = #{record.catalog3Id,jdbcType=BIGINT},
-      tm_id = #{record.tmId,jdbcType=BIGINT}
+      sku_id = #{record.skuId,jdbcType=BIGINT},
+      sale_attr_id = #{record.saleAttrId,jdbcType=BIGINT},
+      sale_attr_value_id = #{record.saleAttrValueId,jdbcType=BIGINT},
+      sale_attr_name = #{record.saleAttrName,jdbcType=VARCHAR},
+      sale_attr_value_name = #{record.saleAttrValueName,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.kgc.kmall.bean.PmsProductInfo" >
-    update pms_product_info
+  <update id="updateByPrimaryKeySelective" parameterType="com.kgc.kmall.bean.PmsSkuSaleAttrValue" >
+    update pms_sku_sale_attr_value
     <set >
-      <if test="spuName != null" >
-        product_name = #{spuName,jdbcType=VARCHAR},
+      <if test="skuId != null" >
+        sku_id = #{skuId,jdbcType=BIGINT},
       </if>
-      <if test="description != null" >
-        description = #{description,jdbcType=VARCHAR},
+      <if test="saleAttrId != null" >
+        sale_attr_id = #{saleAttrId,jdbcType=BIGINT},
       </if>
-      <if test="catalog3Id != null" >
-        catalog3_id = #{catalog3Id,jdbcType=BIGINT},
+      <if test="saleAttrValueId != null" >
+        sale_attr_value_id = #{saleAttrValueId,jdbcType=BIGINT},
       </if>
-      <if test="tmId != null" >
-        tm_id = #{tmId,jdbcType=BIGINT},
+      <if test="saleAttrName != null" >
+        sale_attr_name = #{saleAttrName,jdbcType=VARCHAR},
+      </if>
+      <if test="saleAttrValueName != null" >
+        sale_attr_value_name = #{saleAttrValueName,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.kgc.kmall.bean.PmsProductInfo" >
-    update pms_product_info
-    set product_name = #{spuName,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR},
-      catalog3_id = #{catalog3Id,jdbcType=BIGINT},
-      tm_id = #{tmId,jdbcType=BIGINT}
+  <update id="updateByPrimaryKey" parameterType="com.kgc.kmall.bean.PmsSkuSaleAttrValue" >
+    update pms_sku_sale_attr_value
+    set sku_id = #{skuId,jdbcType=BIGINT},
+      sale_attr_id = #{saleAttrId,jdbcType=BIGINT},
+      sale_attr_value_id = #{saleAttrValueId,jdbcType=BIGINT},
+      sale_attr_name = #{saleAttrName,jdbcType=VARCHAR},
+      sale_attr_value_name = #{saleAttrValueName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

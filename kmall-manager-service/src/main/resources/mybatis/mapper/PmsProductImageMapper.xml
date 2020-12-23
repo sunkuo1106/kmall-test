@@ -7,6 +7,14 @@
     <result column="img_name" property="imgName" jdbcType="VARCHAR" />
     <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
   </resultMap>
+
+  <insert id="insertImages">
+    INSERT  INTO  pms_product_image(product_id,img_name,img_url) values
+    <foreach collection="spuImageList" item="val" separator=",">
+      (#{productId},#{val.imgName},#{val.imgUrl})
+    </foreach>
+  </insert>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

@@ -1,5 +1,6 @@
 package com.kgc.kmall.manager.mapper;
 
+import com.kgc.kmall.bean.PmsProductImage;
 import com.kgc.kmall.bean.PmsProductSaleAttr;
 import com.kgc.kmall.bean.PmsProductSaleAttrExample;
 import org.apache.ibatis.annotations.Param;
@@ -28,4 +29,7 @@ public interface PmsProductSaleAttrMapper {
     int updateByPrimaryKeySelective(PmsProductSaleAttr record);
 
     int updateByPrimaryKey(PmsProductSaleAttr record);
+
+    //批量添加
+    int insertImages(@Param("productId") Long productId, @Param("spuImageList") List<PmsProductImage> spuImageList);
 }
