@@ -7,6 +7,28 @@
     <result column="sale_attr_id" property="saleAttrId" jdbcType="BIGINT" />
     <result column="sale_attr_name" property="saleAttrName" jdbcType="VARCHAR" />
   </resultMap>
+
+  <resultMap id="selectSpuSaleAttrListCheckBySkuMap" type="com.kgc.kmall.bean.PmsProductSaleAttr" autoMapping="true">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="sale_attr_id" property="saleAttrId" jdbcType="BIGINT" />
+    <result column="sale_attr_name" property="saleAttrName" jdbcType="VARCHAR" />
+    <collection property="spuSaleAttrValueList" ofType="com.kgc.kmall.bean.PmsProductSaleAttrValue" autoMapping="true">
+      <id column="sale_attr_value_id" property="id" jdbcType="BIGINT" />
+      <result column="product_id" property="productId" jdbcType="BIGINT" />
+      <result column="sale_attr_id" property="saleAttrId" jdbcType="BIGINT" />
+      <result column="sale_attr_value_name" property="saleAttrValueName" jdbcType="VARCHAR" />
+      <result column="isChecked" property="isChecked"/>
+    </collection>
+  </resultMap>
+
+  <select id="spuSaleAttrListIsCheck" resultMap="selectSpuSaleAttrListCheckBySkuMap">
+    	select psav.*,IF(sku_id,1,0) AS isChecked
+        from (select * from view_sal_attr_value where product_id=#{spuId}) as psav
+        LEFT JOIN (SELECT * from pms_sku_sale_attr_value WHERE sku_id=#{skuId}) as pssav
+        on psav.sale_attr_value_id=pssav.sale_attr_value_id
+  </select>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

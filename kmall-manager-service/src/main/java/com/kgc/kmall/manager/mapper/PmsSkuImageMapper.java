@@ -28,4 +28,7 @@ public interface PmsSkuImageMapper {
     int updateByPrimaryKeySelective(PmsSkuImage record);
 
     int updateByPrimaryKey(PmsSkuImage record);
+
+    //查询出sku所有图片
+    List <PmsSkuImage> selectImgsBySkuId(Long id);
 }

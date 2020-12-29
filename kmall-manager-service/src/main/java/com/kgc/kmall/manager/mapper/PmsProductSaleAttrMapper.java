@@ -32,4 +32,7 @@ public interface PmsProductSaleAttrMapper {
 
     //批量添加
     int insertImages(@Param("productId") Long productId, @Param("spuImageList") List<PmsProductImage> spuImageList);
+
+    //根据sku的销售属性添加isChecked属性
+    List<PmsProductSaleAttr> spuSaleAttrListIsCheck(@Param("spuId") Long spuId,@Param("skuId") Long skuId);
 }

@@ -17,4 +17,7 @@ public interface SpuService {
     List<PmsProductSaleAttr> spuSaleAttrList(Long spuId);
 
     List<PmsProductImage> spuImageList(Long spuId);
+
+    //根据sku的销售属性添加isChecked属性
+    List<PmsProductSaleAttr> spuSaleAttrListIsCheck(Long spuId,Long skuId);
 }

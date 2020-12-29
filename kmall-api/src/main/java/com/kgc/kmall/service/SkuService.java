@@ -4,4 +4,6 @@ import com.kgc.kmall.bean.PmsSkuInfo;
 
 public interface SkuService {
     public String saveSkuInfo(PmsSkuInfo skuInfo);
+
+    PmsSkuInfo selectBySkuId(Long id);
 }

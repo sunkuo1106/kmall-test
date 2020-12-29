@@ -100,4 +100,10 @@ public class SpuServiceImpl implements SpuService {
         List<PmsProductImage> pmsProductImageList = pmsProductImageMapper.selectByExample(example);
         return pmsProductImageList;
     }
+
+    @Override
+    public List<PmsProductSaleAttr> spuSaleAttrListIsCheck(Long spuId, Long skuId) {
+        List<PmsProductSaleAttr> pmsProductSaleAttrList = pmsProductSaleAttrMapper.spuSaleAttrListIsCheck(spuId, skuId);
+        return pmsProductSaleAttrList;
+    }
 }

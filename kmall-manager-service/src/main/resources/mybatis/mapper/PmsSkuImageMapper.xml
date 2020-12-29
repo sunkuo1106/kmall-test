@@ -9,6 +9,9 @@
     <result column="product_img_id" property="spuImgId" jdbcType="BIGINT" />
     <result column="is_default" property="isDefault" jdbcType="VARCHAR" />
   </resultMap>
+  <select id="selectImgsBySkuId" resultMap="BaseResultMap">
+    select * from pms_sku_image where sku_id = ${value}
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
