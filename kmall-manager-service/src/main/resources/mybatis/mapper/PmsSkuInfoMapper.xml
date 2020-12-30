@@ -13,6 +13,31 @@
     <result column="sku_default_img" property="skuDefaultImg" jdbcType="VARCHAR" />
     <collection property="skuImageList" ofType="com.kgc.kmall.bean.PmsSkuImage" column="id" select="com.kgc.kmall.manager.mapper.PmsSkuImageMapper.selectImgsBySkuId"></collection>
   </resultMap>
+
+  <resultMap id="skuInfoAttrValueMap" type="com.kgc.kmall.bean.PmsSkuInfo" autoMapping="true">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="product_id" property="spuId" jdbcType="BIGINT" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="sku_name" property="skuName" jdbcType="VARCHAR" />
+    <result column="sku_desc" property="skuDesc" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="DOUBLE" />
+    <result column="tm_id" property="tmId" jdbcType="BIGINT" />
+    <result column="catalog3_id" property="catalog3Id" jdbcType="BIGINT" />
+    <result column="sku_default_img" property="skuDefaultImg" jdbcType="VARCHAR" />
+    <collection property="skuSaleAttrValueList" ofType="com.kgc.kmall.bean.PmsSkuSaleAttrValue">
+      <id column="pssav_id" property="id" jdbcType="BIGINT" />
+      <result column="sku_id" property="skuId" jdbcType="BIGINT" />
+      <result column="sale_attr_id" property="saleAttrId" jdbcType="BIGINT" />
+      <result column="sale_attr_value_id" property="saleAttrValueId" jdbcType="BIGINT" />
+      <result column="sale_attr_name" property="saleAttrName" jdbcType="VARCHAR" />
+      <result column="sale_attr_value_name" property="saleAttrValueName" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+
+  <select id="selectBySpuId" resultMap="skuInfoAttrValueMap">
+        SELECT * FROM `view_pms_sku_info_sale_attr_value` where product_id=#{value};
+  </select>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

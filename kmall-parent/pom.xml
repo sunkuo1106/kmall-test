@@ -22,6 +22,7 @@
         <dubbo.dependencies.zookeeper.version>2.7.1</dubbo.dependencies.zookeeper.version>
         <commons.version>2.4</commons.version>
         <swagger.version>2.9.2</swagger.version>
+        <fastjson.version>1.2.46</fastjson.version>
     </properties>
 
     <groupId>com.kgc.kmall</groupId>
@@ -68,6 +69,11 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
