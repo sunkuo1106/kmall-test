@@ -23,6 +23,7 @@
         <commons.version>2.4</commons.version>
         <swagger.version>2.9.2</swagger.version>
         <fastjson.version>1.2.46</fastjson.version>
+        <jedis.version>2.9.0</jedis.version>
     </properties>
 
     <groupId>com.kgc.kmall</groupId>
@@ -74,6 +75,11 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${jedis.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
