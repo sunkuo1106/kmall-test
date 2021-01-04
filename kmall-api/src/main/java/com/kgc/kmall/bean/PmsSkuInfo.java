@@ -123,4 +123,22 @@ public class PmsSkuInfo implements Serializable {
     public void setSkuDefaultImg(String skuDefaultImg) {
         this.skuDefaultImg = skuDefaultImg == null ? null : skuDefaultImg.trim();
     }
+
+    @Override
+    public String toString() {
+        return "PmsSkuInfo{" +
+                "id=" + id +
+                ", spuId=" + spuId +
+                ", price=" + price +
+                ", skuName='" + skuName + '\'' +
+                ", skuDesc='" + skuDesc + '\'' +
+                ", weight=" + weight +
+                ", tmId=" + tmId +
+                ", catalog3Id=" + catalog3Id +
+                ", skuDefaultImg='" + skuDefaultImg + '\'' +
+                ", skuImageList=" + skuImageList +
+                ", skuAttrValueList=" + skuAttrValueList +
+                ", skuSaleAttrValueList=" + skuSaleAttrValueList +
+                '}';
+    }
 }

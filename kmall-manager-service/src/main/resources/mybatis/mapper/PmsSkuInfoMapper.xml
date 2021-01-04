@@ -13,7 +13,7 @@
     <result column="sku_default_img" property="skuDefaultImg" jdbcType="VARCHAR" />
     <collection property="skuImageList" ofType="com.kgc.kmall.bean.PmsSkuImage" column="id" select="com.kgc.kmall.manager.mapper.PmsSkuImageMapper.selectImgsBySkuId"></collection>
   </resultMap>
-
+  
   <resultMap id="skuInfoAttrValueMap" type="com.kgc.kmall.bean.PmsSkuInfo" autoMapping="true">
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="product_id" property="spuId" jdbcType="BIGINT" />
@@ -33,6 +33,27 @@
       <result column="sale_attr_value_name" property="saleAttrValueName" jdbcType="VARCHAR" />
     </collection>
   </resultMap>
+
+  <resultMap id="getAllSkuBaseResultMap" type="com.kgc.kmall.bean.PmsSkuInfo">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="product_id" property="spuId" jdbcType="BIGINT" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="sku_name" property="skuName" jdbcType="VARCHAR" />
+    <result column="sku_desc" property="skuDesc" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="DOUBLE" />
+    <result column="tm_id" property="tmId" jdbcType="BIGINT" />
+    <result column="catalog3_id" property="catalog3Id" jdbcType="BIGINT" />
+    <result column="sku_default_img" property="skuDefaultImg" jdbcType="VARCHAR" />
+    <collection property="skuAttrValueList" ofType="com.kgc.kmall.bean.PmsSkuAttrValue">
+      <id column="id" property="id" jdbcType="BIGINT" />
+      <result column="attr_id" property="attrId" jdbcType="BIGINT" />
+      <result column="value_id" property="valueId" jdbcType="BIGINT" />
+      <result column="sku_id" property="skuId" jdbcType="BIGINT" />
+    </collection>
+  </resultMap>
+  <select id="getAllSku" resultMap="getAllSkuBaseResultMap">
+    select * from pms_sku_info info LEFT JOIN pms_sku_attr_value sav on info.id=sav.sku_id
+  </select>
 
   <select id="selectBySpuId" resultMap="skuInfoAttrValueMap">
         SELECT * FROM `view_pms_sku_info_sale_attr_value` where product_id=#{value};
