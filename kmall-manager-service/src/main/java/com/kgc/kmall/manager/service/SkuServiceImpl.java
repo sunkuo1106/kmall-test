@@ -105,12 +105,25 @@ public class SkuServiceImpl implements SkuService {
         return pmsSkuInfoMapper.selectBySpuId(spuId);
     }
 
+//    @Override
+//    public List<PmsSkuInfo> getAllSku() {
+//        List<PmsSkuInfo> allSku = pmsSkuInfoMapper.getAllSku();
+//        for (PmsSkuInfo pmsSkuInfo : allSku) {
+//            System.out.println(pmsSkuInfo.toString());
+//        }
+//        return allSku;
+//    }
+
     @Override
     public List<PmsSkuInfo> getAllSku() {
-        List<PmsSkuInfo> allSku = pmsSkuInfoMapper.getAllSku();
-        for (PmsSkuInfo pmsSkuInfo : allSku) {
-            System.out.println(pmsSkuInfo.toString());
+        List<PmsSkuInfo> pmsSkuInfos = pmsSkuInfoMapper.selectByExample(null);
+        for (PmsSkuInfo pmsSkuInfo : pmsSkuInfos) {
+            PmsSkuAttrValueExample example=new PmsSkuAttrValueExample();
+            PmsSkuAttrValueExample.Criteria criteria = example.createCriteria();
+            criteria.andSkuIdEqualTo(pmsSkuInfo.getId());
+            List<PmsSkuAttrValue> pmsSkuAttrValues = pmsSkuAttrValueMapper.selectByExample(example);
+            pmsSkuInfo.setSkuAttrValueList(pmsSkuAttrValues);
         }
-        return allSku;
+        return pmsSkuInfos;
     }
 }
