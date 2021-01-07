@@ -8,7 +8,21 @@
     <result column="is_enabled" property="isEnabled" jdbcType="VARCHAR" />
   </resultMap>
 
+  <resultMap id="BaseResultMap2" type="com.kgc.kmall.bean.PmsBaseAttrInfo" >
+    <id column="attr_id" property="id" jdbcType="BIGINT" />
+    <result column="attr_name" property="attrName" jdbcType="VARCHAR" />
+    <result column="catalog3_id" property="catalog3Id" jdbcType="BIGINT" />
+    <collection property="attrValueList" ofType="com.kgc.kmall.bean.PmsBaseAttrValue">
+      <id column="value_id" property="id" jdbcType="BIGINT" />
+      <result column="value_name" property="valueName" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
 
+  <select id="selectAttrInfoValueListByValueId" resultMap="BaseResultMap2">
+  SELECT *
+  FROM view_pms_base_attr_infor_value
+  WHERE value_id IN(${valueIdStr})
+  </select>
 
   <sql id="Example_Where_Clause" >
     <where >
