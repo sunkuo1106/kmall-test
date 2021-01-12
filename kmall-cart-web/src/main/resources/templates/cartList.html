@@ -172,7 +172,7 @@
             </div>
             <div>
                 <ol>
-                    <li>总价:<span style="color:#e64346;font-weight:bold;font-size:16px;" class="fnt">￥0.00</span>  </li>
+                    <li>总价:<span style="color:#e64346;font-weight:bold;font-size:16px;" id="totalAmount" class="fnt" th:text="'￥'+${totalAmount}">￥0.00</span>  </li>
 
                 </ol>
             </div>
@@ -266,7 +266,7 @@
 <script type="text/javascript">
 
      function toTrade(){
-         window.location.href="http://cart.gmall.com:8087/toTrade";
+         window.location.href="http://cart.kmall.com:8085/toTrade";
     }
     function toItem(skuId) {
         window.location.href="http://item.gmall.com:8084/"+skuId+".html";
@@ -286,7 +286,7 @@
        }
         var param="isChecked="+isCheckedFlag+"&"+"skuId="+skuId;
         $.post("checkCart",param,function (data) {
-            sumSumPrice();
+            $("#totalAmount").text("￥"+data.totalAmount);
         });
 
     }

@@ -1475,6 +1475,66 @@ public class OmsCartItemExample {
             addCriterion("product_attr not between", value1, value2, "productAttr");
             return (Criteria) this;
         }
+
+        public Criteria andIsCheckedIsNull() {
+            addCriterion("is_checked is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCheckedIsNotNull() {
+            addCriterion("is_checked is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCheckedEqualTo(Integer value) {
+            addCriterion("is_checked =", value, "isChecked");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCheckedNotEqualTo(Integer value) {
+            addCriterion("is_checked <>", value, "isChecked");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCheckedGreaterThan(Integer value) {
+            addCriterion("is_checked >", value, "isChecked");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCheckedGreaterThanOrEqualTo(Integer value) {
+            addCriterion("is_checked >=", value, "isChecked");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCheckedLessThan(Integer value) {
+            addCriterion("is_checked <", value, "isChecked");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCheckedLessThanOrEqualTo(Integer value) {
+            addCriterion("is_checked <=", value, "isChecked");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCheckedIn(List<Integer> values) {
+            addCriterion("is_checked in", values, "isChecked");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCheckedNotIn(List<Integer> values) {
+            addCriterion("is_checked not in", values, "isChecked");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCheckedBetween(Integer value1, Integer value2) {
+            addCriterion("is_checked between", value1, value2, "isChecked");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsCheckedNotBetween(Integer value1, Integer value2) {
+            addCriterion("is_checked not between", value1, value2, "isChecked");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
