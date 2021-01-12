@@ -1,5 +1,6 @@
 package com.kgc.kmall.kmallsearchweb.controller;
 
+import com.kgc.kmall.annotations.LoginRequired;
 import com.kgc.kmall.bean.*;
 import com.kgc.kmall.service.AttrService;
 import com.kgc.kmall.service.SearchService;
@@ -20,6 +21,7 @@ public class SearchController {
     @Reference
     AttrService attrService;
 
+    @LoginRequired(false)
     @RequestMapping("/index.html")
     public String index(){
         return "index";
@@ -51,8 +53,8 @@ public class SearchController {
             for (String s : valueId) {
                 PmsSearchCrumb pmsSearchCrumb=new PmsSearchCrumb();
                 pmsSearchCrumb.setValueId(s);
-                pmsSearchCrumb.setUrlParam(getURLParam(pmsSearchSkuParam,s));
                 pmsSearchCrumb.setValueName(getValueName(pmsBaseAttrInfos,s));
+                pmsSearchCrumb.setUrlParam(getURLParam(pmsSearchSkuParam,s));
 
                 pmsSearchCrumbList.add(pmsSearchCrumb);
             }
@@ -112,7 +114,7 @@ public class SearchController {
     /**
      * 面包屑对应的urlParam=当前URL中的valueId-面包屑的valueId
      */
-    public String getURLParam(PmsSearchSkuParam pmsSearchSkuParam,String vid){
+    public String getURLParam(PmsSearchSkuParam pmsSearchSkuParam, String vid){
         StringBuffer stringBuffer=new StringBuffer();
         String keyword = pmsSearchSkuParam.getKeyword();
         String catalog3Id = pmsSearchSkuParam.getCatalog3Id();
@@ -135,7 +137,7 @@ public class SearchController {
     }
 
     //根据valueId查询valueName
-    public String getValueName(List<PmsBaseAttrInfo> pmsBaseAttrInfos,String valueId){
+    public String getValueName(List<PmsBaseAttrInfo> pmsBaseAttrInfos, String valueId){
         String valueName="";
         for (PmsBaseAttrInfo pmsBaseAttrInfo : pmsBaseAttrInfos) {
             for (PmsBaseAttrValue pmsBaseAttrValue : pmsBaseAttrInfo.getAttrValueList()) {

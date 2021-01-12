@@ -1,13 +1,13 @@
-package com.kgc.kmall.kmallcartweb;
+package com.kgc.kmall;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class KmallCartWebApplication {
+public class KmallSearchWebApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(KmallCartWebApplication.class, args);
+        SpringApplication.run(KmallSearchWebApplication.class, args);
     }
 
 }

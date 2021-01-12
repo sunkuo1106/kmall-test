@@ -1,6 +1,7 @@
 package com.kgc.kmall.kmallcartweb.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.kgc.kmall.annotations.LoginRequired;
 import com.kgc.kmall.bean.OmsCartItem;
 import com.kgc.kmall.bean.PmsSkuInfo;
 import com.kgc.kmall.service.CartService;
@@ -27,6 +28,7 @@ public class CartController {
     @Reference
     CartService cartService;
 
+    @LoginRequired(value = false)
     @RequestMapping("/addToCart")
     public String addToCart(long skuId, Integer num, HttpServletRequest request, HttpServletResponse response){
         List<OmsCartItem> omsCartItems = new ArrayList<>();
@@ -115,6 +117,7 @@ public class CartController {
         return b;
     }
 
+    @LoginRequired(false)
     @RequestMapping("/cartList")
     public String cartList(ModelMap modelMap, HttpServletRequest request){
         List<OmsCartItem> omsCartItems = new ArrayList<>();
@@ -139,6 +142,7 @@ public class CartController {
         return "cartList";
     }
 
+    @LoginRequired(false)
     @RequestMapping("/checkCart")
     @ResponseBody
     public Map<String,Object> checkCart(Integer isChecked, Long skuId, HttpServletRequest request, HttpServletResponse response){
@@ -196,6 +200,7 @@ public class CartController {
         return total;
     }
 
+    @LoginRequired(true)
     @RequestMapping("toTrade")
     public String toTrade() {
 
