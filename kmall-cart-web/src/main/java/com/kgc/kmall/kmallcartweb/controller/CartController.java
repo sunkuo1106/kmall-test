@@ -51,7 +51,10 @@ public class CartController {
         omsCartItem.setQuantity(num);
 
         //判断用户是否登录
-        String memberId = "518";
+        String memberId = "";
+        if (request.getAttribute("memberId")!=null){
+            memberId = request.getAttribute("memberId").toString();
+        }
 
         if (StringUtils.isBlank(memberId)) {
             // cookie里原有的购物车数据
@@ -122,7 +125,10 @@ public class CartController {
     public String cartList(ModelMap modelMap, HttpServletRequest request){
         List<OmsCartItem> omsCartItems = new ArrayList<>();
         //用户id
-        String memberId = "518";
+        String memberId = "";
+        if (request.getAttribute("memberId")!=null){
+            memberId = request.getAttribute("memberId").toString();
+        }
         if(StringUtils.isNotBlank(memberId)){
             // 已经登录查询db
             omsCartItems = cartService.cartList(memberId);
@@ -147,7 +153,10 @@ public class CartController {
     @ResponseBody
     public Map<String,Object> checkCart(Integer isChecked, Long skuId, HttpServletRequest request, HttpServletResponse response){
         Map<String,Object> map=new HashMap<>();
-        String memberId = "518";
+        String memberId = "";
+        if (request.getAttribute("memberId")!=null){
+            memberId = request.getAttribute("memberId").toString();
+        }
         if(StringUtils.isNotBlank(memberId)){
             //用户登录,调用服务，修改状态
             OmsCartItem omsCartItem=new OmsCartItem();

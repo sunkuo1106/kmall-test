@@ -50,9 +50,27 @@ public class PassportController {
 
             // 将token存入redis一份
             memberService.addUserToken(token,umsMember.getId());
-            return "token";
+        }else{
+            //验证不成功
+            token = "fail";
         }
-        //验证不成功
-        return "fail";
+        return token;
+    }
+
+    @RequestMapping("verify")
+    @ResponseBody
+    public Map<String,Object> verify(String token,String currentIp,HttpServletRequest request){
+        // 通过jwt校验token真假
+        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> decode = JwtUtil.decode(token, "2021kmall077", currentIp);
+        if(decode!=null){
+            map.put("status","success");
+            Object memberId = decode.get("memberId");
+            map.put("memberId",memberId);
+            map.put("nickname",decode.get("nickname"));
+        }else{
+            map.put("status","fail");
+        }
+        return map;
     }
 }
