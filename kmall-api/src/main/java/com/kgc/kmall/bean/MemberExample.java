@@ -1351,6 +1351,136 @@ public class MemberExample {
             addCriterion("history_integration not between", value1, value2, "historyIntegration");
             return (Criteria) this;
         }
+
+        public Criteria andAccessTokenIsNull() {
+            addCriterion("access_token is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccessTokenIsNotNull() {
+            addCriterion("access_token is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccessTokenEqualTo(String value) {
+            addCriterion("access_token =", value, "accessToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccessTokenNotEqualTo(String value) {
+            addCriterion("access_token <>", value, "accessToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccessTokenGreaterThan(String value) {
+            addCriterion("access_token >", value, "accessToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccessTokenGreaterThanOrEqualTo(String value) {
+            addCriterion("access_token >=", value, "accessToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccessTokenLessThan(String value) {
+            addCriterion("access_token <", value, "accessToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccessTokenLessThanOrEqualTo(String value) {
+            addCriterion("access_token <=", value, "accessToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccessTokenLike(String value) {
+            addCriterion("access_token like", value, "accessToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccessTokenNotLike(String value) {
+            addCriterion("access_token not like", value, "accessToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccessTokenIn(List<String> values) {
+            addCriterion("access_token in", values, "accessToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccessTokenNotIn(List<String> values) {
+            addCriterion("access_token not in", values, "accessToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccessTokenBetween(String value1, String value2) {
+            addCriterion("access_token between", value1, value2, "accessToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccessTokenNotBetween(String value1, String value2) {
+            addCriterion("access_token not between", value1, value2, "accessToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceUidIsNull() {
+            addCriterion("source_uid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceUidIsNotNull() {
+            addCriterion("source_uid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceUidEqualTo(Long value) {
+            addCriterion("source_uid =", value, "sourceUid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceUidNotEqualTo(Long value) {
+            addCriterion("source_uid <>", value, "sourceUid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceUidGreaterThan(Long value) {
+            addCriterion("source_uid >", value, "sourceUid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceUidGreaterThanOrEqualTo(Long value) {
+            addCriterion("source_uid >=", value, "sourceUid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceUidLessThan(Long value) {
+            addCriterion("source_uid <", value, "sourceUid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceUidLessThanOrEqualTo(Long value) {
+            addCriterion("source_uid <=", value, "sourceUid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceUidIn(List<Long> values) {
+            addCriterion("source_uid in", values, "sourceUid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceUidNotIn(List<Long> values) {
+            addCriterion("source_uid not in", values, "sourceUid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceUidBetween(Long value1, Long value2) {
+            addCriterion("source_uid between", value1, value2, "sourceUid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceUidNotBetween(Long value1, Long value2) {
+            addCriterion("source_uid not between", value1, value2, "sourceUid");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
