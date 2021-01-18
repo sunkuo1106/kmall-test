@@ -3,6 +3,7 @@ package com.kgc.kmall.bean;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 public class Order implements Serializable {
     private Long id;
@@ -92,6 +93,16 @@ public class Order implements Serializable {
     private Date commentTime;
 
     private Date modifyTime;
+
+    private List<OrderItem> orderItems;
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
 
     public Long getId() {
         return id;

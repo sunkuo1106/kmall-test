@@ -178,7 +178,7 @@
       #{receiveTime,jdbcType=TIMESTAMP}, #{commentTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.kgc.kmall.bean.Order" >
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.kgc.kmall.bean.Order" >
     insert into oms_order
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

@@ -93,6 +93,11 @@ public class MemberServiceImpl implements MemberService {
         return memberReceiveAddresses;
     }
 
+    @Override
+    public MemberReceiveAddress getReceiveAddressById(Long receiveAddressId) {
+        return memberReceiveAddressMapper.selectByPrimaryKey(receiveAddressId);
+    }
+
     private Member loginFromDb(Member member) {
         MemberExample example=new MemberExample();
         MemberExample.Criteria criteria = example.createCriteria();
